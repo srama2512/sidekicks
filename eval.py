@@ -39,7 +39,7 @@ if __name__ == '__main__':
     parser.add_argument('--knownElev', type=str2bool, default=True)
     parser.add_argument('--knownAzim', type=str2bool, default=False)
     parser.add_argument('--model_path', type=str, default='')
-    parser.add_argument('--greedy', type=str2bool, default=False)
+    parser.add_argument('--greedy', type=str2bool, default=True)
     parser.add_argument('--memorize_views', type=str2bool, default=True)
     parser.add_argument('--mean_subtract', type=str2bool, default=True)
     parser.add_argument('--actorType', type=str, default='actor', help='[ actor | random | greedyLookAhead | demo_sidekick ]')
