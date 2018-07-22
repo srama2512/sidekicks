@@ -203,7 +203,7 @@ def train(opts):
         
         # Decay expert reward gradually
         if opts.expert_rewards and (epoch+1) % opts.expert_rewards_scale_decay == 0:
-            agent.reward_scale_expert /= 10
+            agent.reward_scale_expert /= opts.expert_rewards_scale
 
         # Display three randomly selected batches of panoramas every 10 epochs
         if (epoch+1) % 10 == 0 or epoch == 0:
@@ -265,8 +265,6 @@ if __name__ == '__main__':
     parser.add_argument('--mean_subtract', type=str2bool, default=True)
     parser.add_argument('--actorType', type=str, default='actor', help='[ actor | random | greedyLookAhead | demo_sidekick ]')
     parser.add_argument('--baselineType', type=str, default='average', help='[ average | critic ]')
-    parser.add_argument('--use_gae', type=str2bool, default=False)
-    parser.add_argument('--lambda_gae', type=float, default=0.98)
     parser.add_argument('--act_full_obs', type=str2bool, default=False, help='Full observability for actor?')
     parser.add_argument('--critic_full_obs', type=str2bool, default=False, help='Full observability for critic?')
     parser.add_argument('--expert_trajectories', type=str2bool, default=False, help='Get expert trajectories for supervised policy learning')
@@ -288,7 +286,8 @@ if __name__ == '__main__':
     parser.add_argument('--expert_rewards', type=str2bool, default=False, help='Use rewards from expert agent?')
     parser.add_argument('--rewards_h5_path', type=str, default='', help='Reward file from expert agent')
     parser.add_argument('--reward_scale_expert', type=float, default=1e-4, help='scaling for expert rewards if used')
-    parser.add_argument('--expert_rewards_scale_decay', type=float, default=1000, help='Divide the expert reward scale by a factor of 10 every K epochs')
+    parser.add_argument('--expert_rewards_scale_decay', type=float, default=1000, help='Divide the expert reward scale by a factor every K epochs')
+    parser.add_argument('--expert_rewards_scale', type=float, default=10.0, help='The scaling factor that the expert is divided by')
     parser.add_argument('--start_view', type=int, default=0, help='[0 - random starts, 1 - middle start]')
     parser.add_argument('--reward_estimator', type=int, default=0, help='[ 0 - proper average | 1 - decaying average ]')
     # Other options

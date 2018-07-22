@@ -373,10 +373,6 @@ class Agent:
         if self.mode == 'train':
             self.critic_coeff = opts.critic_coeff
             self.lambda_entropy = opts.lambda_entropy # Entropy term coefficient
-            if hasattr(opts, 'lambda_gae') and hasattr(opts, 'use_gae') and opts.use_gae:
-                self.lambda_gae = opts.lambda_gae
-            else:
-                self.lambda_gae = None
         self.reward_scale = opts.reward_scale
         self.reward_scale_expert = opts.reward_scale_expert
         # ---- Create the optimizer ----
@@ -687,14 +683,7 @@ class Agent:
                 R = R + rewards[t] # A one sample MC estimate of Q[t]
                 # Compute the advantage
                 if self.baselineType == 'critic':
-                    if t < self.T-2:
-                        adv_curr = rewards[t] + values[t+1].data - values[t].data
-                        if self.lambda_gae is not None:
-                            adv = self.lambda_gae*adv + adv_curr
-                        else:
-                            adv = adv_curr
-                    else:
-                        adv = rewards[t] - values[t].data
+                    adv = R - values[t].data 
                 else:
                     # B - an estimate of V[t] when no critic is present. Equivalent to subtracting the average
                     # rewards at each time step which was done in the previous versions of the code.
@@ -779,10 +768,6 @@ class AgentSupervised:
         if self.mode == 'train':
             self.critic_coeff = opts.critic_coeff
             self.lambda_entropy = opts.lambda_entropy # Entropy term coefficient
-            if hasattr(opts, 'lambda_gae') and hasattr(opts, 'use_gae') and opts.use_gae:
-                self.lambda_gae = opts.lambda_gae
-            else:
-                self.lambda_gae = None
         self.T_sup = opts.T_sup
 	self.reward_scale = opts.reward_scale
         self.reward_scale_expert = opts.reward_scale_expert 
@@ -1150,14 +1135,7 @@ class AgentSupervised:
                 R = R + rewards[t] # A one sample MC estimate of Q[t]
                 # Compute the advantage
                 if self.baselineType == 'critic':
-                    if t < self.T-2:
-                        adv_curr = rewards[t] + values[t+1].data - values[t].data
-                        if self.lambda_gae is not None:
-                            adv = self.lambda_gae*adv + adv_curr
-                        else:
-                            adv = adv_curr
-                    else:
-                        adv = R - values[t].data
+                    adv = R - values[t].data
                 else:
                     # B - an estimate of V[t] when no critic is present. Equivalent to subtracting
                     # the average  rewards at each time.
