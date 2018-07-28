@@ -1,6 +1,7 @@
 models
 scores
 data
+*.pyc
 scripts
 *.sh
 *.pyc
