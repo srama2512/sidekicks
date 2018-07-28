@@ -1,7 +1,7 @@
 # Sidekick Policy Learning
 This repository contains code and data for the paper 
 
-[Sidekick Policy Learning for Active Visual Exploration]()  
+[Sidekick Policy Learning for Active Visual Exploration](http://vision.cs.utexas.edu/projects/sidekicks/)  
 Santhosh K. Ramakrishnan, Kristen Grauman  
 ECCV 2018
 
@@ -16,30 +16,30 @@ source activate spl
 - Clone this project repository and setup requirements using pip.
 
 ```
-git clone https://github.com/srama2512/SidekickPolicyLearning.git
-cd SidekickPolicyLearning
+git clone https://github.com/srama2512/sidekicks.git
+cd sidekicks
 pip install -r requirements.txt
 ```
 
-- Download preprocessed SUN360 and ModelNet data to `data`.
+- Download preprocessed SUN360 and ModelNet data.
 
 ```
-cd data/
-mkdir sun360
-cd sun360/
-wget http://vision.cs.utexas.edu/projects/sidekick_policy_learning/data/sun360/sun360_processed.h5
-cd ../
-mkdir modelnet_hard/
-cd modelnet_hard/
-wget http://vision.cs.utexas.edu/projects/sidekick_policy_learning/data/modelnet_hard/modelnet30_processed.h5
-wget http://vision.cs.utexas.edu/projects/sidekick_policy_learning/data/modelnet_hard/modelnet10_processed.h5
+wget http://vision.cs.utexas.edu/projects/sidekicks/data.zip
+unzip data.zip
 ```
 
-- Sidekick scores for both `ours-rew`, `ours-demo`, `rnd-rewards` have been provided [here](http://vision.cs.utexas.edu/projects/sidekick_policy_learning/scores). The `one-view` model used to generate them have also been provided. 
+- Sidekick scores for `ours-rew`, `ours-demo`, `rnd-rewards` on both datasets have been provided [here](http://vision.cs.utexas.edu/projects/sidekicks/scores.zip). The `one-view` model used to generate them have also been provided. 
  
 ## Evaluating pre-trained models
-A limited set of pre-trained models have been provided [here](http://vision.cs.utexas.edu/projects/sidekick_policy_learning/models). To evaluate them, download them to the `models` directory.
+All the pre-trained models have been provided [here](http://vision.cs.utexas.edu/projects/sidekicks/models.zip). To evaluate them, download them to the `models` directory. To reproduce results from the paper: 
 
+```
+wget http://vision.cs.utexas.edu/projects/sidekicks/models.zip
+unzip models.zip
+sh evaluation_script_final.sh
+```
+
+### Evaluation examples
 - Evaluating SUN360 `one-view` baseline on the test data with `avg` metric:
 
 ```
@@ -79,7 +79,7 @@ python eval.py --h5_path modelnet30_processed.h5 \
 ```
 
 ## Training models	
-Ensure that the [pre-trained models](http://vision.cs.utexas.edu/projects/sidekick_policy_learning/models) and [pre-computed scores](http://vision.cs.utexas.edu/projects/sidekick_policy_learning/scores) are downloaded and stored in `models/` and `scores/` respectively. 
+Ensure that the [pre-trained models](http://vision.cs.utexas.edu/projects/sidekicks/models.zip) and [pre-computed scores](http://vision.cs.utexas.edu/projects/sidekicks/scores.zip) are downloaded and extracted. 
 
 - Training `one-view` model on SUN360 with default settings:
 
@@ -119,9 +119,7 @@ python main.py --h5_path data/modelnet_hard/modelnet30_processed.h5 \
 				  --save_path saved_models/modelnet_hard/ltla/
 ```
 
-The other ModelNet Hard models can be trained similar to SUN360 models. 
+The other ModelNet Hard models can be trained similar to SUN360 models. To train actor critic models, set `--baselineType critic`. To add full observability to the critic (for `asymm-ac`), set `--critic_full_obs True`. 
 
-## TODOs
-- Add other baseline models
-- Add instructions to train `asymm-ac`, `ours-rew (ac)` and `ours-demo (ac)` models. 
-- Add visualization instructions 
+## Visualization
+From the repository directory, start jupyter notebook and open `visualize_policy_paper.ipynb`. Perform the TODOs mentioned in the comments (setting the correct paths) and run the entire script. It will generate tensorboard files contained visualized heatmaps on several examples. 
