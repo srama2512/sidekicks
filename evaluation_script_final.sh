@@ -1,5 +1,5 @@
 data_path=data/sun360/sun360_processed.h5
-model_path=/projects/vision/1/webspace/projects/sidekicks/models/sun360
+model_path=models/sun360
 
 echo "=========================================================================="
 echo "=========================== SUN360 results ==============================="
@@ -75,7 +75,7 @@ python -W ignore eval.py --h5_path $data_path --dataset 0 \
 
 data_path=data/modelnet_hard/modelnet30_processed.h5
 data_path_unseen=data/modelnet_hard/modelnet10_processed.h5
-model_path=/projects/vision/1/webspace/projects/sidekicks/models/modelnet_hard
+model_path=models/modelnet_hard
 
 echo "=========================================================================="
 echo "======================== ModelNet Hard results ==========================="
