@@ -1,3 +1,12 @@
+# Emergence of exploratory look-around behaviors through active observation completion
+A journal version of this work in conjunction with our prior work on [Learning to Look Around: Intelligently Exploring Unseen Environments for Uknown Tasks](https://arxiv.org/abs/1709.00507) has been published in Science Robotics 2019.
+
+[Emergence of exploratory look-around behaviors through active observation completion](https://robotics.sciencemag.org/content/4/30/eaaw6326)  
+Santhosh K. Ramakrishnan, Dinesh Jayaraman, Kristen Grauman   
+Science Robotics 2019
+
+We will shortly be updating the codebase along with the datasets for the journal version.
+
 # Sidekick Policy Learning
 This repository contains code and data for the paper 
 
