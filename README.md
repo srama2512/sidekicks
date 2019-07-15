@@ -5,7 +5,7 @@ A journal version of this work in conjunction with our prior work on [Learning t
 Santhosh K. Ramakrishnan, Dinesh Jayaraman, Kristen Grauman   
 Science Robotics 2019
 
-We will shortly be updating the codebase along with the datasets for the journal version.
+A cleaned version of this codebase along with new transfer tasks are available at https://github.com/srama2512/visual-exploration. 
 
 # Sidekick Policy Learning
 This repository contains code and data for the paper 
