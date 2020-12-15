@@ -1,5 +1,5 @@
 # Emergence of exploratory look-around behaviors through active observation completion
-A journal version of this work in conjunction with our prior work on [Learning to Look Around: Intelligently Exploring Unseen Environments for Uknown Tasks](https://arxiv.org/abs/1709.00507) has been published in Science Robotics 2019.
+A journal version of this work in conjunction with our prior work on [Learning to Look Around: Intelligently Exploring Unseen Environments for Unknown Tasks](https://arxiv.org/abs/1709.00507) has been published in Science Robotics 2019.
 
 [Emergence of exploratory look-around behaviors through active observation completion](http://vision.cs.utexas.edu/projects/visual-exploration/)  
 Santhosh K. Ramakrishnan, Dinesh Jayaraman, Kristen Grauman   
