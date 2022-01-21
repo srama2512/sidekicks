@@ -1,5 +1,5 @@
 h5py==2.7.1
-ipython==5.5.0
+ipython==7.16.3
 jupyter-client==5.1.0
 tensorboard==1.6.0
 tensorboardX==0.8
